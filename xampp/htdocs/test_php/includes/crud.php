@@ -1,5 +1,19 @@
+<?php
+session_start();
+
+// Khởi tạo danh sách sản phẩm nếu chưa tồn tại
+if (!isset($_SESSION['products'])) {
+    $_SESSION['products'] = [
+        ["id" => 1, "name" => "Sản phẩm 1", "price" => 1000],
+        ["id" => 2, "name" => "Sản phẩm 2", "price" => 2000],
+        ["id" => 3, "name" => "Sản phẩm 3", "price" => 3000],
+    ];
+}
+$products = $_SESSION['products'];
+?>
+
 <div class="container">
-    <a href="#" class="btn btn-success">Thêm mới</a>
+    <a href="add_product.php" class="btn btn-success">Thêm mới</a>
     <table>
         <thead>
             <tr>
@@ -10,22 +24,14 @@
             </tr>
         </thead>
         <tbody>
-            <?php
-            $products = [
-                ["id" => 1, "name" => "Sản phẩm 1", "price" => 1000],
-                ["id" => 2, "name" => "Sản phẩm 2", "price" => 2000],
-                ["id" => 3, "name" => "Sản phẩm 3", "price" => 3000],
-            ];
-
-            foreach ($products as $product) {
-                echo "<tr>
-                        <td>{$product['name']}</td>
-                        <td>{$product['price']} VND</td>
-                        <td><i class='bi bi-pencil-square'></i></td>
-                        <td><i class='bi bi-trash-fill'></i></td>
-                    </tr>";
-            }
-            ?>
+          <?php foreach ($products as $product): ?>
+            <tr>
+                <td><?= $product['name']; ?></td>
+                <td><?= $product['price']; ?> VND</td>
+                <td><a href="edit_product.php?id=<?= $product['id']; ?>"><i class="bi bi-pencil-square"></i></a></td>
+                <td><a href="delete_product.php?id=<?= $product['id']; ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa?');"><i class="bi bi-trash-fill"></i></a></td>
+            </tr>
+          <?php endforeach; ?>
         </tbody>
     </table>
 </div>
