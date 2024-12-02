@@ -1,1 +1,2 @@
-
+- btvn 1 và 2 nằm trong folder xampp/htdocs/test_php do chưa chuyển vào thư mục này
+- bắt đầu từ btvn 3 trở đi sẽ nằm trong thư mục này
