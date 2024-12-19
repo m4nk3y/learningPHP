@@ -6,3 +6,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ComputerController::class, 'index']);
 Route::get('/issues/{computer_id}', [IssueController::class, 'index']);
+
+Route::get('/create', [ComputerController::class, 'create']);
